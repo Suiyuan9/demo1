@@ -47,7 +47,7 @@
                   <!--group-->
                   <label>User Group</label>
                 <div class="col-md-4">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control " style="width: 100%;">
                     <option value="staff">Staff</option>
                     <option value="manager">Manager</option>
                     <!--<option disabled="disabled">California (disabled)</option>-->
