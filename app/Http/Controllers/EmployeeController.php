@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\employee;
+use App\Models\Employee;
+use Illuminate\Support\Facades\Validator;
+use  RealRashid\SweetAlert\SweetAlertServiceProvider ;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 class EmployeeController extends Controller
 {
     /**
@@ -13,10 +18,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $user = employee::latest()->paginate(5);
+       
+        
+        $employees = Employee::latest()->paginate(10);
       
-        return view('index2.index2',compact('user'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('index2.index2',compact('employees'))
+            ->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -26,7 +33,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('index2.create');
+        
+       return view('index2.create');
+    
     }
 
     /**
@@ -37,26 +46,51 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        
+      /*  $request->validate([
             'name' => 'required',
             'email'=>'required',
             'password' =>'required|min:8|confirmed',
             'userGroup'=>'required',
+            'contact'=>'required|min:8,',
+            'address'=>'required',
            
+        ]);*/
+        
+
+        $validator=Validator::make($request->all(),[
+            'name' => 'required',
+            'email'=>'required',
+            'password' =>'required|min:8|confirmed',
+            'userGroup'=>'required',
+            'contact'=>'required|min:8,',
+            'address'=>'required',
         ]);
 
-        if($request ->hasFile('user-image')){
+        if ($validator->fails()) {
+           
+           Alert::error('Error Title', $validator->errors()->all());
+           return back()->withErrors($validator)            
+                        ->withInput();
+        }
+        
+
+        if($request->hasFile('user-image')){
             $image=$request->file('user-image');
             $image->move('images',$image->getClientOriginalName());
             $imageName=$image->getClientOriginalName();
             $request['image']=$imageName;
             $request['password'] = bcrypt($request->password);
         }
-      
-        employee::create($request->all());
+
        
-        return redirect()->route('index2.index')
-                        ->with('success','Product created successfully.');
+        $newEmployee = new Employee();
+        $newEmployee->create($request->all());
+        
+        alert()->html("employee created successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
+        <a href="/employee/create"  class="btn btn-primary"> stay</a>',"success");
+        return back();
+                        //->withSuccess('employee created successfully.');
     }
 
     /**
@@ -65,9 +99,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(employee $user)
+    public function show(Employee $employee)
     {
-        return view('index2.show',compact('user'));
+        return view('index2.show',compact('employee'));
     }
 
     /**
@@ -76,9 +110,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(employee $user)
+    public function edit(Employee $employee)
     {
-        return view('index2.edit',compact('user'));
+        return view('index2.edit',compact('employee'));
     }
 
     /**
@@ -88,17 +122,42 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, employee $user)
+    public function update(Request $request, Employee $employee)
     {
-        $request->validate([
+        $validator=Validator::make($request->all(),[
             'name' => 'required',
-           
+            'email'=>'required',
+            'password' =>'required|min:8|confirmed',
+            'userGroup'=>'required',
+            'contact'=>'required|min:8,',
+            'address'=>'required',
         ]);
+
+        if ($validator->fails()) {
+           
+           Alert::error('Error Title', $validator->errors()->all());
+           return back()->withErrors($validator)            
+                        ->withInput();
+        }
+        
+
+        if($request->hasFile('user-image')){
+            $image=$request->file('user-image');
+            $image->move('images',$image->getClientOriginalName());
+            $imageName=$image->getClientOriginalName();
+            $request['image']=$imageName;
+            
+        }
+        $request['password'] = bcrypt($request->password);
+
       
-        $user->update($request->all());
+        
+        $employee->update($request->all());
+        alert()->html("employee created successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
+        <a href="/employee/edit"  class="btn btn-primary"> stay</a>',"success");
       
-        return redirect()->route('employee.index')
-                        ->with('success','Employee updated successfully');
+        return back();
+               
     }
 
     /**
@@ -107,11 +166,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(employee $user)
+    public function destroy($id)
     {
-        $user->delete();
+        Employee::find($id)->delete();
        
-        return redirect()->view('index2.index2')
+        return redirect()->route('employee.index')
                         ->with('success','Employee deleted successfully');
     }
 }

@@ -18055,7 +18055,7 @@ body.text-sm .control-sidebar {
 .navbar-white {
   background-color: #fff;
   color: #1f2d3d;
-  height: 5.5em;
+  
 }
 
 .navbar-white.navbar-light .form-control-navbar::-webkit-input-placeholder {

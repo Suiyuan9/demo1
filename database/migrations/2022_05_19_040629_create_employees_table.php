@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('userGroup');
             $table->string('password');
             $table->string('image')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('address');
             $table->timestamps();
         });
     }

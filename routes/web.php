@@ -4,6 +4,8 @@ use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use RealRashid\SweetAlert\Facades\Alert;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,8 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
+   
+
     return view('welcome');
 });
 
@@ -23,7 +27,7 @@ Route::resource('employee', EmployeeController::class);
 Auth::routes();
 
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/index2','index2')->name('index2');
+    
     Route::get('/index3','index3')->name('index3');
     Route::get('/home','index')->name('home');
 

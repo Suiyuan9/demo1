@@ -25,7 +25,10 @@
 <script src="{{ asset('backend/dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
-
+<!-- SweetAlert2 -->
+<script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -160,4 +163,56 @@
     myDropzone.removeAllFiles(true)
   }
   // DropzoneJS Demo Code End
+
+</script>
+
+<script>
+  
+
+   $('.submitForm').on('click',function(e){
+        e.preventDefault();
+      var form = $(this).parents('form');
+      
+      $delete_id =$('.deletebtn_id').val();
+      $id = $delete_id;
+      console.log($id);
+        Swal.fire({
+            title: 'Do you want to save the change?',
+            text: "You won't be able to revert this!", 
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: `Don't save`,
+            confirmButtonText: 'Save it',
+            dangerMode:true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+              $.ajaxSetup({
+              headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }});
+              $.ajax({
+                type:"GET",
+                url:"/employee/" +$id,
+
+                success:function(){
+                  Swal.fire({
+              title: 'Save Success',
+              icon: 'success'
+            }).then(function(){
+
+              form.submit();
+            });
+
+
+                }
+              });
+              
+               
+            }else{
+              Swal.fire('Cancelled','You file is safe','error');
+            }
+        });
+    });
 </script>

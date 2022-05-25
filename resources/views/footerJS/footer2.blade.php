@@ -20,8 +20,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('backend/dist/js/pages/dashboard2.js') }}"></script>
-<script src="{{ asset('adminlte.js') }}"></script>
+
+
 
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('backend/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -36,3 +36,33 @@
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+
+<script>
+  
+    $('#deleteUser').on('click',function(e){
+           e.preventDefault();
+         var form = $(this).parents('form');
+         
+         
+           Swal.fire({
+               title: 'Do you want to delete?',
+               text: "You won't be able to revert this!", 
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               cancelButtonText: `Don't delete`,
+               confirmButtonText: 'Yes, Delete it',
+               dangerMode:true,
+           }).then((result) => {
+               if (result.isConfirmed) {
+                    form.submit();
+            
+               }else{
+                 Swal.fire('Cancelled','You file is safe','error');
+               }
+           });
+       });
+   </script>
+   

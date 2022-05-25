@@ -5,35 +5,35 @@
     <table id="example2" class="table table-bordered table-hover" id=userListing>
         <thead>
             <tr>
-                <th>Primary Key ID</th>
+                <th>No</th>
                 <th>User Name</th>
                 <th>User Email</th>
-                <th>User Password</th>
+                <th>User Address</th>
                 <th>User image</th>
                 <th>User Group</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($user as $user)
+            @foreach ($employees as $employee)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>{{ $user->password }}</td>
-                <td>{{ $user->image }}</td>
-                <td>{{ $user->group }}</td>
+                <td>{{ $employee->name }}</td>
+                <td>{{ $employee->email }}</td>
+                <td>{{ $employee->address }}</td>
+                <td>{{ $employee->image }}</td>
+                <td>{{ $employee->userGroup }}</td>
                 <td>
-                    <form action="{{ route('employee.destroy',$product->id) }}" method="POST">
+                    <form action="{{ route('employee.destroy',$employee->id) }}" method="POST" style="margin: 0%">
    
-                        <a class="btn btn-info" href="{{ route('employee.show',$product->id) }}">Show</a>
+                        <a class="btn btn-info" href="{{ route('employee.show',$employee->id) }}">Show</a>
         
-                        <a class="btn btn-primary" href="{{ route('employee.edit',$product->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
        
                         @csrf
                         @method('DELETE')
           
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger" id="deleteUser">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -41,11 +41,12 @@
             @endforeach
         </tbody>
     </table>
+    {!! $employees->withQueryString()->links('pagination::bootstrap-5') !!}
             
         </div>
     
 </div>
-<script>
+<!--<script>
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
@@ -61,4 +62,4 @@
         "responsive": true,
       });
     });
-  </script>
+  </script>-->

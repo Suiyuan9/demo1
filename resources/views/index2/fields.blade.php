@@ -11,92 +11,232 @@
           <!-- jquery validation -->
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
+              
+              @if (isset($employee))
+              <h3 class="card-title">Edit User :{{ $employee->name }}</h3>
+              @else <h3 class="card-title">Add New User</h3>
+              @endif
             </div>
             <!-- /.card-header -->
             <!-- form start -->
             <form id="quickForm">
               <div class="card-body">
                 
-                  <!--name-->
+                  <!--name
                 <div class="form-group">
                   <div class="row justify-content-between" > 
+                    <div class="col-md-2">
                     <label for="exampleInputEmail1">User Name*</label>
+                    </div>
                     <div class="col-md-4">
                     <input type="name" name="name" class="form-control" id="exampleInputName" placeholder="Enter name">
-                  </div>
+                  </div>-->
 
 
-                  <!--email-->
+                  <!--email
+                  <div class="col-md-2">
                   <label for="exampleInputEmail1">Email address</label>
+                  </div>
                   <div class="col-md-4">
                   <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
                 </div>
                 </div>
+                </div>-->
+                 
+                <div class="form-group">
+                  <div class="row  justify-content-between" > 
+                    <div class="col-md-4">
+                    <label >User Name<span>*</span></label>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="exampleInputPassword1">Password</label>
+                  </div>
+                  
+                  <div class="col-md-4">
+                    <label for="password-confirm">Confirm Password</label>
                 </div>
+                  </div>
                 
+                
+                  <!--input-->
+                  
+                    <div class="row  mb-3 justify-content-between" >
+                    
+                      <div class="col-md-4">
+                      
+                         @if (isset($employee))
+                         <input type="name" name="name" class="form-control" id="exampleInputName" placeholder="Enter name" value="{{ $employee->name }}" required autocomplete="name" autofocus >
+                         <span class="text-danger">@error('name') {{ $errors->first('name') }} @enderror</span>
+                       </div>
+                       <input type = "hidden" class = "deletebtn_id" value = "{{ $employee->id}}">
+                       <div class="col-md-4">
+                         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="Password" value="{{ $employee->password }}" required autocomplete="current-password">
+                         <span class="text-danger">@error('password') {{ $errors->first('password') }} @enderror</span>
+                     </div>
+                     
+                     <div class="col-md-4">
+                       <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" >
+                       <span class="text-danger">@error('password_confirmation') {{ $errors->first('password_confirmation') }} @enderror</span>
+                   </div>
+                         @else
+
+                         <input type="name" name="name" class="form-control" id="exampleInputName" placeholder="Enter name" value="{{ old('name') }}" required autocomplete="name" autofocus >
+                        <span class="text-danger">@error('name') {{ $errors->first('name') }} @enderror</span>
+                      </div>
+                      <div class="col-md-4">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="Password" value="{{ old('password') }}" required autocomplete="current-password">
+                        <span class="text-danger">@error('password') {{ $errors->first('password') }} @enderror</span>
+                    </div>
+                    
+                    <div class="col-md-4">
+                      <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" >
+                      <span class="text-danger">@error('password_confirmation') {{ $errors->first('password_confirmation') }} @enderror</span>
+                  </div>
+                         @endif
+                       
+                        
+                  
+                    </div>
+                  </div>
+                
+                <!--end input-->
+
 
                 <div class="form-group">
-                  <!--password-->
-                  <div class="row justify-content-between" > 
-                    <label for="exampleInputPassword1">Password *</label>
-                    <div class="col-md-4">
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
-                  </div>
-
-                  <!--group-->
-                  <label>User Group</label>
-                <div class="col-md-4">
-                  <select class="form-control " style="width: 100%;">
-                    <option value="staff">Staff</option>
-                    <option value="manager">Manager</option>
-                    <!--<option disabled="disabled">California (disabled)</option>-->
-                    <option value="admin">admin</option>
-                    
-                  </select>
-                </div>
-                </div>
-                
-                  
-                
-                </div>
-
-
-               
-              
-
-              <div class="form-group">
-                <!--date-of-birthday-->
-                <div class="row  justify-content-between" > 
-                  <label >Date of Birthday*</label>
-                  <div class="col-md-3">
-                    <div class="input-group date" id="reservationdatetime" data-target-input="nearest" >
-                      <div class="input-group-append" data-target="#reservationdatetime" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                  <div class="row  justify-content-between" > 
+                    <div class="col-md-8">
+                      <label for="exampleInputEmail1">Email address</label>
                     </div>
-                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime"/>
-                      
-                  </div>
-                    
-                </div>
-
-                <!--Phone-->
-                <label>Phone :</label>
+                  
                   <div class="col-md-4">
-                    <div class="input-group">
+                    <label >Contact</label>
+                </div>
+                  </div>
+
+
+                
+                  <!--password-->
+                  <div class="row  mb-3 justify-content-between" > 
+                    <div class="col-md-8">
+                      <input type="email" name="email" class="form-control " id="exampleInputEmail1" placeholder="Enter email" value="@if(isset($employee)){{ $employee->email }}@else{{ old('email') }}@endif" required autocomplete="email" autofocus>
+                      <span class="text-danger">@error('email') {{ $errors->first('email') }} @enderror</span>
+                    </div>
+            
+                  <div class="col-md-4">
+                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-phone"></i></span>
                       </div>
-                      <input type="text" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                      <input type="text" name="contact" class="form-control" data-inputmask='"mask": "(999) 9999-9999"' data-mask value="@if(isset($employee)){{ $employee->contact }}@endif">
                     </div>
-                    <!---->        
+                    <!---->  
                 </div>
-                
-              </div>
-           
-              </div>
+                  </div>
 
-              
+                </div>
+
+
+                <!--group-->
+                <div class="form-group">
+                  <div class="row  justify-content-between" > 
+                    <div class="col-md-12">
+                      <label>User Address</label>
+                    </div>
+                  </div>
+                  
+
+                   <!--input-->
+                  
+                    <div class="row  justify-content-between" > 
+                      <div class="col-md-12">
+                        <input type="address" name="address" class="form-control " id="address" placeholder="Enter address" value="@if(isset($employee)){{ $employee->address }}@else{{ old('address') }}@endif" required autocomplete="address" autofocus>
+                        <span class="text-danger">@error('address') {{ $errors->first('address') }} @enderror</span>
+                      </div>
+                      <!---->
+                    </div>
+                    </div>
+
+                    <!--group-->
+                <div class="form-group">
+                  <div class="row  justify-content-between" > 
+                    <div class="col-md-4">
+                      <label>Calender</label>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label></label>
+                    </div>
+
+                    
+                    <div class="col-md-4">
+                      <label >User Group</label>
+                    </div>
+
+                  </div>
+                  
+
+                   <!--input-->
+                  
+                    <div class="row  mb-3 justify-content-between" > 
+                      <div class="col-md-4">
+                        <div class="input-group">
+                          <button type="button" class="btn btn-default float-right" id="daterange-btn">
+                            <i class="fa fa-calendar"></i> Date range picker
+                            <i class="fas fa-caret-down"></i>
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div class="col-md-4">
+                      <div id="reportrange">
+                        <span ></span>
+                      </div>
+                      </div>
+
+                      <div class="col-md-4">
+                        <select class="form-control " name="userGroup" style="width: 100%;" >
+                      @if (isset($employee))
+                          <option value="{{ $employee->userGroup }}">{{ $employee->userGroup }}</option>
+                        
+                      @endif
+                        <option value="staff">Staff</option>
+                        <option value="manager">Manager</option>
+                        <!--<option disabled="disabled">California (disabled)</option>-->
+                        <option value="admin">admin</option>
+                        
+                      </select>
+                  </div>
+  
+
+                    </div>
+                    </div>
+
+                    <!-- image-->
+                    <div class="form-group">
+                      <div class="row " >
+                        <div class="col-md-12">
+                          <label>Image</label>
+                        </div>
+                       </div>
+                    
+
+                   
+
+                    
+                      <div class="row " >
+                        <div class="col-md-12">
+                        
+                         
+                          <div class="box__input">
+                            <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
+                            <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
+                            
+                          </div>
+                        
+                        </div>
+                       </div>
+                    </div>
+           
 
                 <div class="form-group mb-0">
                   <div class="custom-control custom-checkbox">
@@ -104,10 +244,27 @@
                     <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
                   </div>
                 </div>
+
+
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+              
+                 <div class="row " >
+                  <div class="col-md-10">
+                <a href="{{ route('employee.create') }}" class="btn  btn-default btn-lg " style="float:right;"  >Cancel</a>
+                  </div>
+                  <a class="btn  btn-default btn-lg " style="margin-right:1%"   href="{{ route('employee.index') }}">Back</a>
+                  @if (isset($employee))
+                  <button type="submit" class="btn btn-primary" id="submitForm" style="float:right;">Submit</button>
+                 
+                  
+                 
+                  @else
+                  <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
+                  @endif
+                
+                 </div>
               </div>
             </form>
           </div>
@@ -123,3 +280,6 @@
       <!-- /.row -->
     </div><!-- /.container-fluid -->
   </section>
+
+  
+  

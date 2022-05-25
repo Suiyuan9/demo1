@@ -10,8 +10,8 @@
           <div class="col-sm-6">
             <h1 class="m-0">User Listing</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+          <div class="col-sm-7">
+            <ol class="breadcrumb float-sm-left">
                 @if(app('router')->getRoutes()->match(app('request')->create(URL::previous()))->getName()=="home")
               <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v2</li>
@@ -30,7 +30,7 @@
         </div><!-- /.row -->
         <div class="row mb-2">
         <div class="col-sm-12">
-          <h1 class="pull-right"><a class="btn btn-primary float-sm-right" style="" href="{{ route('employee.create') }}">Add New Record</a></h1>
+          <h1 class="pull-right"><a class="btn btn-primary float-sm-right" id="btn-submit" style="" href="{{ route('employee.create') }}">Add New Record</a></h1>
           </div>
       </div>
       </div>
@@ -63,10 +63,9 @@
   
   </div>
 </div>
-
+@include('sweetalert::alert')
 <!-- REQUIRED SCRIPTS -->
 @include('footerJS.footer2')
-
 
 @endsection
 

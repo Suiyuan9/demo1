@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class employee extends Model
+class Employee extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,8 @@ class employee extends Model
         'password',
         'userGroup',
         'image',
+        'contact',
+        'address',
     ];
 
     protected $hidden = [
@@ -28,5 +30,7 @@ class employee extends Model
         'password'=>'required|string|max:100',
         'userGroup'=>'nullable|string|max:100',
         'image'=>'nullable|string|max:100',
+        'contact'=>'nullable|string|max:55',
+        'address'=>'required|string|max:255',
     ];
 }

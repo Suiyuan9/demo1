@@ -29,9 +29,7 @@
         <i class="fas fa-user" ></i>
         <i class="fas fa-caret-square-down"></i><!--user img-->
       </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-        @csrf
-    </form>
+    
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
         <a href="{{ route('home') }}" class="dropdown-item">

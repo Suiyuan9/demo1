@@ -2,20 +2,19 @@
     <!-- Brand Logo -->
     <a href="{{ route('home') }}" class="brand-link">
       <img src="backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light"><b>{{ config('app.name') }}</b></span>
-      <br>
-      <small style="font-size: 0.6em; padding-left:4.7em" class="brand-text"> Version 1.1.13</small>
+      <span class="brand-text font-weight-light"><b>{{ config('app.name') }}</b><small style="font-size: 0.6em;" class="brand-text"> Version 1.1.13</small></span>
     </a>
     
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+        <div class="image" style="margin-top: 10px">
           <img src="backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a> 
+          <span class="float-right text-muted text-sm">logged in {{ Auth::user()->last_login_time }}</span>  
         </div>
       </div>
 
@@ -46,19 +45,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link active" id="link">
+                <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : ' '}}" id="link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('employee.index') }}" class="nav-link" id="link">
+                <a href="{{ route('employee.index') }}" class="nav-link {{ request()->is('employee')  ? 'active' : ' '}}" id="link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User Listing</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('index3') }}" class="nav-link" id="link">
+                <a href="{{ route('index3') }}" class="nav-link {{ request()->is('index3')  ? 'active' : ' '}}" id="link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>

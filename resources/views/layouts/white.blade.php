@@ -15,9 +15,9 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('home') }}" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+      <!--<li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li>-->
     </ul>
 
     <!-- Right navbar links 右边 -->
@@ -150,9 +150,7 @@
           <i class="fas fa-user" ></i>
           <i class="fas fa-caret-square-down"></i><!--user img-->
         </a>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-          @csrf
-      </form>
+     
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
           <a href="{{ route('home') }}" class="dropdown-item">
@@ -160,9 +158,6 @@
             
           </a>
 
-
-          
-          </a>
 
 
           <div class="dropdown-divider"></div>

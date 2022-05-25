@@ -15,7 +15,7 @@
           <img src="../../backend/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -36,19 +36,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link active" id="link">
+                <a href="{{ route('home') }}" class="nav-link {{ request()->is('home') ? 'active' : ' '}}" id="link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v1</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('employee.index') }}" class="nav-link" id="link">
+                <a href="{{ route('employee.index') }}" class="nav-link {{ request()->is('employee')  ? 'active' : ' '}}" id="link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User Listing</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('index3') }}" class="nav-link" id="link">
+                <a href="{{ route('index3') }}" class="nav-link {{ request()->is('index3')  ? 'active' : ' '}}" id="link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard v3</p>
                 </a>
