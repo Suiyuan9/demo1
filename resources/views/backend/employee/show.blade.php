@@ -78,17 +78,17 @@
                           <div class="col-md-4">
                           
                             
-                             <input type="name" name="name" class="form-control" id="exampleInputName" placeholder="Enter name" value="{{ $employee->name }}" required autocomplete="name" autofocus disabled="disabled" >
+                             <input type="name" name="name" class="form-control" id="exampleInputName" placeholder="Enter name" value="{{ $employee->name }}" required autocomplete="name" autofocus disabled="disabled" style="background-color: white;">
                              
                            </div>
                            
                            <div class="col-md-4">
-                             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="Password" value="{{ $employee->password }}" required autocomplete="current-password" disabled="disabled">
+                             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="exampleInputPassword1" placeholder="Password" value="{{ $employee->password }}" style="background-color: white;" required autocomplete="current-password" disabled="disabled">
                             
                          </div>
                          
                          <div class="col-md-4">
-                           <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" value="{{ $employee->password }}" disabled="disabled">
+                           <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" style="background-color: white;" value="{{ $employee->password }}" disabled="disabled">
                           
                        </div>
                              
@@ -119,7 +119,7 @@
                       <!--password-->
                       <div class="row  mb-3 justify-content-between" > 
                         <div class="col-md-8">
-                          <input type="email" name="email" class="form-control " id="exampleInputEmail1" placeholder="Enter email" value="{{ $employee->email }}" required autocomplete="email" disabled="disabled">
+                          <input type="email" name="email" class="form-control " style="background-color: white;" id="exampleInputEmail1" placeholder="Enter email" value="{{ $employee->email }}" required autocomplete="email" disabled="disabled">
                          
                         </div>
                 
@@ -128,7 +128,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-phone"></i></span>
                           </div>
-                          <input type="text" name="contact" class="form-control" data-inputmask='"mask": "(999) 9999-9999"' data-mask value="{{ $employee->contact }}" disabled="disabled">
+                          <input type="text"  style="background-color: white;" name="contact" class="form-control" data-inputmask='"mask": "(999) 9999-9999"' data-mask value="{{ $employee->contact }}" disabled="disabled">
                         </div>
                         <!---->  
                     </div>
@@ -150,7 +150,7 @@
                       
                         <div class="row  justify-content-between" > 
                           <div class="col-md-12">
-                            <input type="address" name="address" class="form-control " id="address" placeholder="Enter address" value="{{ $employee->address }}" required autocomplete="address" disabled="disabled">
+                            <input type="address" name="address" style="background-color: white;" class="form-control " id="address" placeholder="Enter address" value="{{ $employee->address }}" required autocomplete="address" disabled="disabled">
                             
                           </div>
                           <!---->
@@ -195,7 +195,7 @@
                           </div>
     
                           <div class="col-md-4">
-                            <select class="form-control " name="userGroup" style="width: 100%;" disabled="disabled" >
+                            <select class="form-control " name="userGroup" style="width: 100%;background-color: white"  disabled="disabled" >
                          
                               <option value="{{ $employee->userGroup }}">{{ $employee->userGroup }}</option>
  
