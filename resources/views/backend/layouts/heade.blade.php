@@ -31,12 +31,14 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <!-- SweetAlert2 -->
    <link rel="stylesheet" href="{{ asset('backend/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+   
 
+   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
-@include('layouts.white')
+@include('backend.layouts.white')
   </nav>
 <!-- /.navbar -->
 
@@ -45,7 +47,7 @@
     @yield('content')
 </div>
 
-@include('footer.footer')
+@include('backend.footer.footer')
 <!--wrapper -->
 </div>
 
@@ -53,8 +55,7 @@
 
 
 
-
-
+@include('backend.footerJS.timezone')
 </body>
 </html>
 

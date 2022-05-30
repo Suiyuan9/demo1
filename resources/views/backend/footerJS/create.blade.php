@@ -216,3 +216,165 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+  
+  document.querySelectorAll(".drop-zone__input").forEach(inputElement=>{
+    const dropZoneElement = inputElement.closest('.drop-zone');
+
+    dropZoneElement.addEventListener("click",e=>{
+      inputElement.click();
+    });
+    
+
+    inputElement.addEventListener("change",e=>{
+      if(inputElement.files.length){
+        updateThumbnail(dropZoneElement,inputElement.files[0]);
+      }
+    });
+
+    dropZoneElement.addEventListener('dragover',e=>{
+      e.preventDefault();
+      dropZoneElement.classList.add('drop-zone--over');
+    });
+
+    ['dragleave','dragend'].forEach(type=>{
+      dropZoneElement.addEventListener(type , e=>{
+        dropZoneElement.classList.remove('drop-zone--over');
+      });     
+    });
+    dropZoneElement.addEventListener('drop',e =>{
+      e.preventDefault();
+      //console.log(e.dataTransfer.files);
+      if(e.dataTransfer.files.length){
+        inputElement.files=e.dataTransfer.files;
+       // console.log(e.dataTransfer.files[0]);
+        updateThumbnail(dropZoneElement,e.dataTransfer.files[0]);
+      }
+      dropZoneElement.classList.remove('drop-zone--over');
+    });
+  });
+
+  function updateThumbnail(dropZoneElement,file){
+    console.log(dropZoneElement);
+    console.log(file);
+    let thumbnailElement= dropZoneElement.querySelector('drop-zone__thumb');
+
+    if(dropZoneElement.querySelector('.drop-zone__prompt')){
+      dropZoneElement.querySelector('.drop-zone__prompt').remove();
+    }
+    if(!thumbnailElement){
+      thumbnailElement =document.createElement('div');
+      thumbnailElement.classList.add('drop-zone__thumb');
+      dropZoneElement.appendChild(thumbnailElement);
+
+      
+    }
+    thumbnailElement.dataset.label=file.name;
+
+    if(file.type.startsWith('image/')){
+      const reader =new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload=()=>{
+        thumbnailElement.style.backgroundImage=`url('${reader.result}')`;
+        let btn = document.createElement('button');
+                    btn.innerHTML = "x";
+                    btn.style.cssText = `
+                        position: absolute; 
+                        right: -2px; 
+                        top:-10px;
+                        color:red;
+                        border:none;
+                        background:none;
+                        font-size:30px;
+                    `;
+    
+                    //add btn to frame 
+                    thumbnailElement.append(btn);
+
+                   
+                    
+                    //set event btn and exec remove frame
+                    btn.addEventListener('click', e => {
+                        e.target.parentElement.remove();
+                    });
+      };
+    }else{
+      thumbnailElement.style.backgroundImage=null;
+    }
+  }
+ 
+
+</script>
+
+
+<style>
+.drop-zone{
+  max-width: 100%;
+  height: 200px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 4px dashed #009678;
+  
+}
+
+.drop-zone--over{
+  border-style: solid;
+}
+.drop-zone__input{
+  display: none;
+}
+.drop-zone__thumb{
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #cccccc;
+  background-size: cover;
+  position: relative;
+}
+.drop-zone__thumb::after{
+  content: attr(data-label);
+  position: relative;
+  bottom: 0;
+  top: 0;
+  width: 10px;
+  padding: 5px 0;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0,0.75);
+  text-align: center;
+  font-size: 14px
+}
+</style>
+
+<script>
+  $('.btn-primary').on('click',function(e){
+         e.preventDefault();
+       var form = $(this).parents('form');
+        Swal.fire({
+             title: 'Are you sure to submit it?',
+             text: "Make sure user information is correct it", 
+             icon: 'warning',
+             showCancelButton: true,
+             confirmButtonColor: '#3085d6',
+             cancelButtonColor: '#d33',
+             cancelButtonText: `No`,
+             confirmButtonText: 'Yes, Submit it',
+             dangerMode:true,
+         }).then((result) => {
+             if (result.isConfirmed) {
+                  form.submit();
+          
+             }else{
+               Swal.fire('Cancelled','Make sure their are correct it','error');
+             }
+         });
+     });
+    
+ </script>
+

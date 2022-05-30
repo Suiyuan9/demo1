@@ -37,15 +37,12 @@
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-
+<!--delete alert-->
 <script>
-  
-    $('#deleteUser').on('click',function(e){
+    $('.btn-danger').on('click',function(e){
            e.preventDefault();
          var form = $(this).parents('form');
-         
-         
-           Swal.fire({
+          Swal.fire({
                title: 'Do you want to delete?',
                text: "You won't be able to revert this!", 
                icon: 'warning',
@@ -64,5 +61,9 @@
                }
            });
        });
+      
    </script>
+
+
+   
    

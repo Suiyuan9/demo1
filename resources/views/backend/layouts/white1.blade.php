@@ -2,23 +2,18 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('home') }}" class="nav-link">Home</a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="#" class="nav-link">Contact</a>
-    </li>
+   
+    
   </ul>
 
   <!-- Right navbar links 右边 -->
   <ul class="navbar-nav ml-auto">
     
 
-    <li class="nav-item">
-      <a class="nav-link" style="text-align: right" href="#" role="button">
-       {{ Auth::user()->name }}
+    <li class="nav-item" >
+      <a class="nav-link" style="text-align: right" id="time" href="#" role="button">
+        
       </a>
-      <span class="float-right text-muted text-sm">logged in {{ Auth::user()->last_login_time }}</span>
     </li>
 
    
@@ -76,4 +71,4 @@
   
 
    <!-- Main Sidebar Container -->
-   @include('layouts.sidebar_inside')
+   @include('backend.layouts.sidebar1')

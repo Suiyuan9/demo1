@@ -12,9 +12,9 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+     <!-- <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('home') }}" class="nav-link">Home</a>
-      </li>
+      </li>-->
       <!--<li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>-->
@@ -131,11 +131,11 @@
         </div>
       </li>-->
 
-      <li class="nav-item">
-        <a class="nav-link" style="text-align: right" href="#" role="button">
-         {{ Auth::user()->name }}
+      <li class="nav-item" >
+        <a class="nav-link" style="text-align: right" id="time" href="#" role="button">
+        
         </a>
-        <span class="float-right text-muted text-sm">logged in {{ Auth::user()->last_login_time }}</span>
+      
       </li>
 
      <!-- <li class="nav-item">
@@ -145,11 +145,11 @@
       </li>-->
 
 
-      <li class="nav-item dropdown"><!--要改成图像-->
+      <!--<li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fas fa-user" ></i>
-          <i class="fas fa-caret-square-down"></i><!--user img-->
-        </a>
+          <i class="fas fa-caret-square-down"></i>
+        </a>-->
      
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
@@ -194,4 +194,4 @@
     
 
      <!-- Main Sidebar Container -->
-     @include('layouts.sidebar')
+     @include('backend.layouts.sidebar')

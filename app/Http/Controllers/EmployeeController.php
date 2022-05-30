@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use  RealRashid\SweetAlert\SweetAlertServiceProvider ;
 use RealRashid\SweetAlert\Facades\Alert;
+
 
 
 class EmployeeController extends Controller
@@ -16,16 +19,20 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       
+        if($request->filled('search')){
+            $employees = Employee::search($request->search)->paginate(10);
+           
+        }
         
-        $employees = Employee::latest()->paginate(10);
-      
-        return view('index2.index2',compact('employees'))
+       else{ 
+           $employees = Employee::latest()->paginate(10);
+       }
+        return view('backend.employee.index2',compact('employees'))
             ->with('i', (request()->input('page', 1) - 1) * 10);
+    
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +41,7 @@ class EmployeeController extends Controller
     public function create()
     {
         
-       return view('index2.create');
+       return view('backend.employee.create');
     
     }
 
@@ -57,7 +64,6 @@ class EmployeeController extends Controller
            
         ]);*/
         
-
         $validator=Validator::make($request->all(),[
             'name' => 'required',
             'email'=>'required',
@@ -65,6 +71,7 @@ class EmployeeController extends Controller
             'userGroup'=>'required',
             'contact'=>'required|min:8,',
             'address'=>'required',
+            'image'=>'required|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -73,20 +80,19 @@ class EmployeeController extends Controller
            return back()->withErrors($validator)            
                         ->withInput();
         }
-        
-
-        if($request->hasFile('user-image')){
-            $image=$request->file('user-image');
-            $image->move('images',$image->getClientOriginalName());
-            $imageName=$image->getClientOriginalName();
-            $request['image']=$imageName;
-            $request['password'] = bcrypt($request->password);
-        }
-
-       
+        $image=$request->file('image');
+        $imageName=$image->getClientOriginalName();
+        $image->move(public_path('public/images'),$imageName);
+        //
         $newEmployee = new Employee();
-        $newEmployee->create($request->all());
-        
+        $newEmployee->name=$request->name;
+        $newEmployee->email=$request->email;
+        $newEmployee->userGroup=$request->userGroup;
+        $newEmployee->password=$request->password;
+        $newEmployee->contact=$request->contact;
+        $newEmployee->address=$request->address;
+        $newEmployee->image=$imageName;
+        $newEmployee->save();
         alert()->html("employee created successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
         <a href="/employee/create"  class="btn btn-primary"> stay</a>',"success");
         return back();
@@ -101,7 +107,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        return view('index2.show',compact('employee'));
+        return view('backend.employee.show',compact('employee'));
     }
 
     /**
@@ -112,7 +118,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        return view('index2.edit',compact('employee'));
+        return view('backend.employee.edit',compact('employee'));
     }
 
     /**
@@ -124,6 +130,12 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
+        /*if(Hash::check($request->input('password_confirmation')&& $request->input('password'), $employee->password)){
+            return 'true';
+        }
+        else{
+            return 'false';
+        }*/
         $validator=Validator::make($request->all(),[
             'name' => 'required',
             'email'=>'required',
@@ -139,24 +151,27 @@ class EmployeeController extends Controller
            return back()->withErrors($validator)            
                         ->withInput();
         }
-        
 
-        if($request->hasFile('user-image')){
-            $image=$request->file('user-image');
-            $image->move('images',$image->getClientOriginalName());
+        if($request->hasFile('image')!=''){
+            $image=$request->file('image');
+            $image->move(public_path('public/images'),$image->getClientOriginalName());
             $imageName=$image->getClientOriginalName();
             $request['image']=$imageName;
+            //$request['password'] = bcrypt($request->password);
             
-        }
-        $request['password'] = bcrypt($request->password);
-
-      
-        
+            $employee->update($request->all());
+            $employee->update(['image'=>$imageName]);
+            alert()->html("employee edited successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
+            <a href=""  class="btn btn-primary"> stay</a>',"success");
+          
+            return back();
+        }else{
         $employee->update($request->all());
-        alert()->html("employee created successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
-        <a href="/employee/edit"  class="btn btn-primary"> stay</a>',"success");
+       
+        alert()->html("employee edited successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
+        <a href=""  class="btn btn-primary"> stay</a>',"success");
       
-        return back();
+        return back();}
                
     }
 
@@ -170,7 +185,7 @@ class EmployeeController extends Controller
     {
         Employee::find($id)->delete();
        
-        return redirect()->route('employee.index')
-                        ->with('success','Employee deleted successfully');
+        return back()
+               ->with('success','Record has been delete successfully');
     }
 }

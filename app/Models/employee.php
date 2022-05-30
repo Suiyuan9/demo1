@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Sanctum\HasApiTokens;
+use Laravel\Scout\Searchable;
 
 class Employee extends Model
 {
-    use HasFactory;
+    use HasFactory, Searchable;
 
     protected $fillable = [
         'name',
@@ -33,4 +35,16 @@ class Employee extends Model
         'contact'=>'nullable|string|max:55',
         'address'=>'required|string|max:255',
     ];
+
+
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'userGroup' =>$this->userGroup,
+            'address'=>$this->address,
+            'contact'=>$this->contact
+        ];
+    }
 }

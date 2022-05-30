@@ -31,11 +31,12 @@
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('js/app.js') }}" defer></script>
 
+  
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <nav class="main-header navbar navbar-expand navbar-white navbar-light" >
-@include('layouts.white1')
+@include('backend.layouts.white1')
   </nav>
 <!-- /.navbar -->
 
@@ -44,7 +45,8 @@
     @yield('content')
 </div>
 
-@include('footer.footer')
+@include('backend.footer.footer')
+@include('backend.footerJS.timezone')
 <!--wrapper -->
 </div>
 

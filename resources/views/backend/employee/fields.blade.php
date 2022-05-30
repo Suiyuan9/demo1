@@ -75,7 +75,7 @@
                      </div>
                      
                      <div class="col-md-4">
-                       <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password" >
+                       <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password" value="{{ $employee->password }}" placeholder="Confirm Password" >
                        <span class="text-danger">@error('password_confirmation') {{ $errors->first('password_confirmation') }} @enderror</span>
                    </div>
                          @else
@@ -225,26 +225,13 @@
                     
                       <div class="row " >
                         <div class="col-md-12">
-                        
-                         
-                          <div class="box__input">
-                            <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-                            <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-                            
-                          </div>
-                        
+                         <div class="drop-zone">
+                           <span class="drop-zone__prompt">Drop file here or click to upload</span>
+                           <input type="file" name="image" class="drop-zone__input" accept="image/png, image/jpeg,image/jpg, image/gif, image/svg" value="@if(isset($employee)){{ $employee->image }}@endif" >
+                         </div>
                         </div>
                        </div>
                     </div>
-           
-
-                <div class="form-group mb-0">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                    <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                  </div>
-                </div>
-
 
               </div>
               <!-- /.card-body -->
@@ -252,7 +239,11 @@
               
                  <div class="row " >
                   <div class="col-md-10">
+                @if(isset($employee))
+                <a href="" class="btn  btn-default btn-lg " style="float:right;"  >Cancel</a>
+                @else
                 <a href="{{ route('employee.create') }}" class="btn  btn-default btn-lg " style="float:right;"  >Cancel</a>
+                @endif
                   </div>
                   <a class="btn  btn-default btn-lg " style="margin-right:1%"   href="{{ route('employee.index') }}">Back</a>
                   @if (isset($employee))
@@ -261,7 +252,7 @@
                   
                  
                   @else
-                  <button type="submit" class="btn btn-primary" style="float:right;">Submit</button>
+                  <button type="submit" class="btn btn-primary" id="submitButton" style="float:right;">Submit</button>
                   @endif
                 
                  </div>

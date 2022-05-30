@@ -183,7 +183,7 @@ a:not([href]):not([class]):hover {
 .nav-link .fa-user{
   font-size: 30px;
   text-align: center;
-  margin-top: 15px;
+ 
   
   }
   .nav-link .fa-caret-square-down{

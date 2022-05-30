@@ -1,4 +1,4 @@
-@extends('layouts.heade1')
+@extends('backend.layouts.heade1')
 
 @section('content')
 <div class="content-wrapper" style="margin-left: 0">
@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Edit User</h1>
+            <h1>Edit User <span style="font-size:18px;color:#869099">P000004</span></h1>
           </div>
           
         </div>
@@ -22,21 +22,16 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <form action="{{ route('employee.update',$employee->id) }}" method="POST">
+    <form action="{{ route('employee.update',$employee->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-@include('index2.fields')
+@include('backend.employee.fields')
 
 
     </form>
-<div class="footer">
-    <div class="float-right d-none d-sm-inline-block">
-      <b></b> P000004
-    
-    </div>
-  </div>
+
 </div>
-@include('footerJS.create')
+@include('backend.footerJS.create')
 
 
 

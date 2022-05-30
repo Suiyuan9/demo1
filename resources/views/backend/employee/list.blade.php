@@ -2,16 +2,16 @@
     
         
             <div id="example1_wrapper" class="dataTable_wrapper dt boostrap4">
-    <table id="example2" class="table table-bordered table-hover" id=userListing>
+    <table id="example1" class="table table-bordered table-striped" id=userListing>
         <thead>
             <tr>
-                <th>No</th>
-                <th>User Name</th>
-                <th>User Email</th>
-                <th>User Address</th>
-                <th>User image</th>
-                <th>User Group</th>
-                <th colspan="3">Action</th>
+                <th  class="col-sm-1">No</th>
+                <th class="col-sm-1">User Name</th>
+                <th class="col-sm-2">User Email</th>
+                <th class="col-sm-3">User Address</th>
+                <th class="col-sm-1">User image</th>
+                <th class="col-sm-1">User Group</th>
+                <th class="col-1">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -20,21 +20,22 @@
                 <td>{{ ++$i }}</td>
                 <td>{{ $employee->name }}</td>
                 <td>{{ $employee->email }}</td>
-                <td>{{ $employee->address }}</td>
-                <td>{{ $employee->image }}</td>
+                <td >{{ $employee->address }}</td>
+                <td><img src="../public/images/{{ ($employee->image) }}" height="45px" width="50px"></td>
                 <td>{{ $employee->userGroup }}</td>
-                <td>
+                <td style="float:right;border:none">
                     <form action="{{ route('employee.destroy',$employee->id) }}" method="POST" style="margin: 0%">
    
-                        <a class="btn btn-info" href="{{ route('employee.show',$employee->id) }}">Show</a>
+                        <a class="btn-sm btn-info" href="{{ route('employee.show',$employee->id) }}">Read</a>
         
-                        <a class="btn btn-primary" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
+                        <a class="btn-sm btn-primary" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
        
                         @csrf
                         @method('DELETE')
           
-                        <button type="submit" class="btn btn-danger" id="deleteUser">Delete</button>
+                        <button type="submit" class="btn-xs btn-danger" id="deleteUser">Delete</button>
                     </form>
+                  
                 </td>
             </tr>
                 
@@ -63,3 +64,5 @@
       });
     });
   </script>-->
+
+  

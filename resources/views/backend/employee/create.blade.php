@@ -1,4 +1,4 @@
-@extends('layouts.heade1')
+@extends('backend.layouts.heade1')
 
 @section('content')
 
@@ -16,35 +16,31 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Create User</h1>
+            <h1>Create User <span style="font-size:18px;color:#869099">P000003</span></h1>
           </div>
           
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-left">
-                  <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                  <!--<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
                   <li class="breadcrumb-item"><a href="{{ route('employee.index') }}">User Listing</a></li>
-                  <li class="breadcrumb-item active">Create User</li>
+                  <li class="breadcrumb-item active">Create User</li>-->
+                  {{ Breadcrumbs::render() }}
                 </ol>
               </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-    <form action="{{ route('employee.store') }}" method="POST">
+    <form action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-@include('index2.fields')
+@include('backend.employee.fields')
 
 
     </form>
-<div class="footer">
-    <div class="float-right d-none d-sm-inline-block">
-      <b></b> P000003
-    
-    </div>
-  </div>
+
 </div>
-@include('footerJS.create')
+@include('backend.footerJS.create')
 
 
 

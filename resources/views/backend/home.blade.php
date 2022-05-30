@@ -1,4 +1,4 @@
-@extends('layouts.heade')
+@extends('backend.layouts.heade')
 
 @section('content')
 
@@ -7,12 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Dashboard <span style="font-size:18px;color:#869099">P000001</span></h1>
           </div><!-- /.col -->
           <div class="col-sm-7">
             <ol class="breadcrumb float-sm-left">
-              <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <!--<li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v1</li>-->
+              {{ Breadcrumbs::render() }}
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -96,13 +97,8 @@
 
     
   
-    <div class="footer">
-      <div class="float-right d-none d-sm-inline-block">
-        <b></b> P000001
-      
-      </div>
-    </div>
-@include('footerJS.footer1')
+    
+@include('backend.footerJS.footer1')
 
 
 @endsection

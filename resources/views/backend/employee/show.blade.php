@@ -1,4 +1,4 @@
-@extends('layouts.heade1')
+@extends('backend.layouts.heade1')
 
 @section('content')
 
@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1>Show User</h1>
+            <h1>Show User <span style="font-size:18px;color:#869099">P000005</span></h1>
           </div>
           
         </div>
@@ -221,25 +221,13 @@
                         
                           <div class="row " >
                             <div class="col-md-12">
-                            
-                             
-                              <div class="box__input">
-                                <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
-                                <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-                                
-                              </div>
-                            
+                              <img src="../public/images/{{ ($employee->image) }}" height="45px" width="50px"></td>
                             </div>
                            </div>
                         </div>
                
     
-                    <div class="form-group mb-0">
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-                        <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-                      </div>
-                    </div>
+                    
     
     
                   </div>
@@ -270,14 +258,9 @@
 
 
    
-<div class="footer">
-    <div class="float-right d-none d-sm-inline-block">
-      <b></b> P000005
-    
-    </div>
-  </div>
+
 </div>
-@include('footerJS.create')
+@include('backend.footerJS.create')
 
 
 
