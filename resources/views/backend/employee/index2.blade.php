@@ -30,14 +30,14 @@
         </div><!-- /.row -->
         <form method="GET" >
         <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
           <input class="form-control" type="text" name="search"  value="{{ request()->get('search') }}"  placeholder="Search..." aria-label="Search" 
           aria-describedby="button-addon2">
         </div>
         <div class="col-sm-1">
           <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-8">
           <h1 class="pull-right"><a class="btn btn-primary float-sm-right" id="btn-submit" style="" href="{{ route('employee.create') }}">Add New Record</a></h1>
           </div>
       </div>

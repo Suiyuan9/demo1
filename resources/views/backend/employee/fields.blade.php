@@ -239,20 +239,22 @@
               
                  <div class="row " >
                   <div class="col-md-10">
-                @if(isset($employee))
-                <a href="" class="btn  btn-default btn-lg " style="float:right;"  >Clear</a>
-                @else
-                <a href="{{ route('employee.create') }}" class="btn  btn-default btn-lg " style="float:right;"  >Clear</a>
-                @endif
+                  <a class="btn  btn-info btn-lg " style="float:right;   href="{{ route('employee.index') }}">Back</a>
+               
                   </div>
-                  <a class="btn  btn-default btn-lg " style="margin-right:1%"   href="{{ route('employee.index') }}">Back</a>
+                  @if(isset($employee))
+                  <a href="" class="btn  btn-warning btn-lg " style="float:right;margin-right:1%;"  >Clear</a>
+                  @else
+                  <a href="{{ route('employee.create') }}" class="btn  btn-warning btn-lg " style="float:right;margin-right:1%;"  >Clear</a>
+                  @endif
+                 
                   @if (isset($employee))
-                  <button type="submit" class="btn btn-primary" id="submitForm" style="float:right;">Submit</button>
+                  <button type="submit" class="btn btn-success" id="submitForm" style="float:right;">Submit</button>
                  
                   
                  
                   @else
-                  <button type="submit" class="btn btn-primary" id="submitButton" style="float:right;">Submit</button>
+                  <button type="submit" class="btn btn-success" id="submitButton" style="float:right;">Submit</button>
                   @endif
                 
                  </div>
