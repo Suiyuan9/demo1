@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html >
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ATOZ System</title>
+  <title>{{config('app.name') }}</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="backend/dist/css/adminlte.min.css">
+
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -62,4 +63,24 @@
         </div>
         <br>
         <div class="row">
-          <div
+        <div class="col-6">
+        <div class="icheck-primary">
+            <input type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }} name="remember" class="form-check-input">
+            <label for="remember" class="form-check-label" style="font-weight: 700">
+              {{ __('Remember Me') }}
+             </label>
+       </div>
+       </div>
+    <!-- /.col -->
+        <div class="col-6">
+          <!--            <button type="submit" class="btn btn-primary btn-block">Sign In</button>-->
+          @if (Route::has('password.request'))
+          <a class="btn btn-link" style="font-weight: 700" href="{{ route('password.request') }}">
+              {{ __('Forgot Password?') }}
+          </a>
+          
+      @endif
+          </div>
+          <!-- /.col -->
+          </div>
+      </form>
