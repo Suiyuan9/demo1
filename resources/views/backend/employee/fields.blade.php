@@ -226,6 +226,9 @@
                       <div class="row " >
                         <div class="col-md-12">
                          <div class="drop-zone">
+                           @if(isset($employee))
+                          <img class="OldImage" src="/public/images/{{ ($employee->image) }}" height="100px" width="100px">
+                          @endif
                            <span class="drop-zone__prompt">Drop file here or click to upload</span>
                            <input type="file" name="image" class="drop-zone__input" accept="image/png, image/jpeg,image/jpg, image/gif, image/svg" value="@if(isset($employee)){{ $employee->image }}@endif" >
                          </div>
@@ -239,7 +242,7 @@
               
                  <div class="row " >
                   <div class="col-md-10">
-                  <a class="btn  btn-info btn-lg " style="float:right;   href="{{ route('employee.index') }}">Back</a>
+                  <a class="btn  btn-info btn-lg " style="float:right;"   href="{{ route('employee.index') }}">Back</a>
                
                   </div>
                   @if(isset($employee))
@@ -249,12 +252,12 @@
                   @endif
                  
                   @if (isset($employee))
-                  <button type="submit" class="btn btn-success" id="submitForm" style="float:right;">Submit</button>
+                  <button type="submit" class="btn btn-success" id="submitForm" style="float:right;font-size:19px">Submit</button>
                  
                   
                  
                   @else
-                  <button type="submit" class="btn btn-success" id="submitButton" style="float:right;">Submit</button>
+                  <button type="submit" class="btn btn-success" id="submitButton" style="float:right;font-size:19px">Submit</button>
                   @endif
                 
                  </div>

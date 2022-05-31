@@ -262,6 +262,7 @@
 
     if(dropZoneElement.querySelector('.drop-zone__prompt')){
       dropZoneElement.querySelector('.drop-zone__prompt').remove();
+      dropZoneElement.querySelector('.OldImage').remove();
     }
     if(!thumbnailElement){
       thumbnailElement =document.createElement('div');
@@ -377,4 +378,3 @@
      });
     
  </script>
-
