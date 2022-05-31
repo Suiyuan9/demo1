@@ -351,7 +351,7 @@
   font-size: 14px
 }
 </style>
-
+<!--edit and create alert-->
 <script>
   $('.btn-primary').on('click',function(e){
          e.preventDefault();
