@@ -240,9 +240,9 @@
                  <div class="row " >
                   <div class="col-md-10">
                 @if(isset($employee))
-                <a href="" class="btn  btn-default btn-lg " style="float:right;"  >Cancel</a>
+                <a href="" class="btn  btn-default btn-lg " style="float:right;"  >Clear</a>
                 @else
-                <a href="{{ route('employee.create') }}" class="btn  btn-default btn-lg " style="float:right;"  >Cancel</a>
+                <a href="{{ route('employee.create') }}" class="btn  btn-default btn-lg " style="float:right;"  >Clear</a>
                 @endif
                   </div>
                   <a class="btn  btn-default btn-lg " style="margin-right:1%"   href="{{ route('employee.index') }}">Back</a>

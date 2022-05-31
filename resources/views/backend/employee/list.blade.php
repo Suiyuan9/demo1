@@ -26,7 +26,7 @@
                 <td style="float:right;border:none">
                     <form action="{{ route('employee.destroy',$employee->id) }}" method="POST" style="margin: 0%">
    
-                        <a class="btn-sm btn-info" href="{{ route('employee.show',$employee->id) }}">Read</a>
+                        <a class="btn-sm btn-info" href="{{ route('employee.show',$employee->id) }}">View</a>
         
                         <a class="btn-sm btn-primary" href="{{ route('employee.edit',$employee->id) }}">Edit</a>
        

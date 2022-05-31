@@ -171,7 +171,8 @@ class EmployeeController extends Controller
         alert()->html("employee edited successfully.",'<a href="/employee"  class="btn btn-primary"> Back </a> 
         <a href=""  class="btn btn-primary"> stay</a>',"success");
       
-        return back();}
+        return back();
+    }
                
     }
 

@@ -58,6 +58,24 @@
           
         </ul>
       </nav>
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-top: 1px solid #4f5962">
+        <div class="image" style="margin-top: 10px">
+          <a class="" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+               <i class="fas fa-sign-out-alt" alt="logout"  style="margin-left: 12px; color: white;font-size: 25px;line-height: 180%; width:30px; height:30px"></i>
+                  {{ __('Logout') }}
+          </a>
+        </div>
+            </div>
+  
+            
+  
+  
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>
+        </div>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
